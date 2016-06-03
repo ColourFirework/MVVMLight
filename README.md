@@ -1,7 +1,9 @@
 # MVVMLight
 A toolkit help to build Android MVVM Application，We have more
 attributes for Data Binding  of View(like Uri for ImageView) ,we create some command for deal with event( like click of Button),also have a global message pipe to communicate with other ViewModel.
- ##Data Binding##
+
+##Data Binding##
+---
 Binding URI to the ImageView with bind:uri will make it loading bitmap from URI and render to ImageView automatically.
 
    ```xml
@@ -39,7 +41,7 @@ AdapterView like ListView、RecyclerView 、ViewPager is convenient, bind it to 
 
   - *ListView*、*ViewPager*、*RecyclerView*
 
-      ```xml
+     ```xml
      <!-- require ItemView  or  ItemViewSelector   -->
      <attr name="itemView" />
      <!-- require List<ViewModel> bind to ItemView to presentation.-->
@@ -60,7 +62,7 @@ AdapterView like ListView、RecyclerView 、ViewPager is convenient, bind it to 
      <attr name="itemView" />
      <!-- require List<ViewModel> bind to ItemView to presentation.-->
      <attr name="viewModels" format="reference" />
-         ```
+     ```
 
   - *EditText*
 
@@ -71,22 +73,21 @@ AdapterView like ListView、RecyclerView 、ViewPager is convenient, bind it to 
 
   - *SimpleDraweeView*
 
-       ```xml
+     ```xml
      <!-- require String to load Image"-->
      <attr name="uri" />
-         ```
+     ```
 
   - *WebView*
 
-      ```xml
+     ```xml
      <!-- require String render to html show in webview-->
      <attr name="render" format="string" />
-      ```
+     ```
 
 
 ##Command Binding##
-
-
+---
 When RecyclerView scroll to end of list,we have onLoadMoreCommand to deal with event.
 
    ```xml
@@ -97,7 +98,7 @@ When RecyclerView scroll to end of list,we have onLoadMoreCommand to deal with e
            bind:onLoadMoreCommand="@{viewModel.loadMoreCommand}"/>
     ```
 
- In ViewModel define a ReplyCommand<Integer> field to deal with this event.
+In ViewModel define a ReplyCommand<Integer> field to deal with this event.
 
    ```java
     public final ReplyCommand<Integer> loadMoreCommand = new ReplyCommand<>(
@@ -107,11 +108,12 @@ When RecyclerView scroll to end of list,we have onLoadMoreCommand to deal with e
              loadData(page)
         });
     ```
+
 More command binding is supported:
 
- - *View*
+  - *View*
 
-   ```xml
+    ```xml
     <!-- require ReplyCommand to deal with view click event. -->
     <attr name="clickCommand" format="reference" />
     <!-- require ReplyCommand<Boolean> to deal with view focus change event.
@@ -119,30 +121,30 @@ More command binding is supported:
     <attr name="onFocusChangeCommand" format="reference" />
     <!-- require ReplyCommand<MotionEvent> -->
     <attr name="onTouchCommand" />
-        ```
+    ```
 
- - *ListView*、*RecyclerView*
+  - *ListView*、*RecyclerView*
 
-     ```xml
+    ```xml
     <!-- require ReplyCommand<Integer> -->
     <attr name="onScrollStateChangedCommand" />
     <!-- require ReplyCommand<ListViewScrollDataWrapper> -->
     <attr name="onScrollChangeCommand" />
     <!-- require ReplyCommand<Integer> count of list items-->
     <attr name="onLoadMoreCommand" format="reference" />
-```
- - *ViewPager*
+    ```
+  - *ViewPager*
 
-     ```xml
+    ```xml
     <!--require ReplyCommand<ViewPagerDataWrapper> -->
     <attr name="onPageScrolledCommand" format="reference" />
     <!--require ReplyCommand<Integer> -->
     <attr name="onPageSelectedCommand" format="reference" />
     <!--require ReplyCommand<Integer> -->
     <attr name="onPageScrollStateChangedCommand" format="reference" />
-        ```
+    ```
 
- - *EditText*
+  - *EditText*
 
     ```xml
     <!--require ReplyCommand<TextChangeDataWrapper> -->
@@ -151,27 +153,27 @@ More command binding is supported:
     <attr name="onTextChangedCommand" format="reference" />
     <!--require ReplyCommand<String> -->
     <attr name="afterTextChangedCommand" format="reference" />
-        ```
+    ```
 
- - *ImageView*
+  - *ImageView*
 
      ```xml
      <!--  require ReplyCommand<Bitmap> -->
      <attr name="onSuccessCommand" format="reference" />
      <!--require ReplyCommand<CloseableReference<CloseableImage>> -->
      <attr name="onFailureCommand" format="reference" />
-         ```
+     ```
 
- - *ScrollView*、*NestedScrollView*
+  - *ScrollView*、*NestedScrollView*
 
-     ```xml
+    ```xml
     <!-- require ReplyCommand<ScrollDataWrapper> -->
     <attr name="onScrollChangeCommand" />
     <!-- require ReplyCommand<NestScrollDataWrapper> -->
     <attr name="onScrollChangeCommand" />
-        ```
+    ```
 
- - *SwipeRefreshLayout*
+  - *SwipeRefreshLayout*
 
     ```xml
     <!-- require RelayCommand<> -->
@@ -179,6 +181,8 @@ More command binding is supported:
     ```
 
 ###Messenger###
+---
+
 
 - global message broadcast without deliver data
 
