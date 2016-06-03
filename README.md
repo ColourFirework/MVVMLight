@@ -91,23 +91,23 @@ AdapterView like ListView、RecyclerView 、ViewPager is convenient, bind it to 
 When RecyclerView scroll to end of list,we have onLoadMoreCommand to deal with event.
 
    ```xml
-     <android.support.v7.widget.RecyclerView
+   <android.support.v7.widget.RecyclerView
            android:id="@+id/recyclerView"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            bind:onLoadMoreCommand="@{viewModel.loadMoreCommand}"/>
-    ```
+   ```
 
 In ViewModel define a ReplyCommand<Integer> field to deal with this event.
 
-   ```java
-    public final ReplyCommand<Integer> loadMoreCommand = new ReplyCommand<>(
+  ```java
+ public final ReplyCommand<Integer> loadMoreCommand = new ReplyCommand<>(
         (count) -> {
             /*count: count of list items*/
              int page=count / LIMIT;
              loadData(page)
         });
-    ```
+  ```
 
 More command binding is supported:
 
