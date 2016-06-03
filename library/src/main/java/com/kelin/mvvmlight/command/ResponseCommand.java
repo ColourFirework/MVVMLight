@@ -15,7 +15,7 @@ public class ResponseCommand<T, R> {
 
     /**
      * like {@link com.kelin.mvvmlight.command.ReplyCommand},but ResponseCommand can return result when command has executed!
-     * @param execute
+     * @param execute function to execute when event occur.
      */
     public ResponseCommand(Func0<R> execute) {
         this.execute0 = execute;

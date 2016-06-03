@@ -122,9 +122,9 @@ public class Messenger {
     /**
      *
      * @param recipient {@link com.kelin.mvvmlight.messenger.Messenger#register(Object, Action0)}
-     * @param tClass type of T
+     * @param tClass class of T
      * @param action this action has one params that type of tClass
-     * @param <T>
+     * @param <T> message data type
      */
     public <T> void register(Object recipient, Class<T> tClass, Action1<T> action) {
         register(recipient, null, false, action, tClass);
@@ -132,11 +132,11 @@ public class Messenger {
 
     /**
      * see {@link com.kelin.mvvmlight.messenger.Messenger#register(Object, Class, Action1)}
-     * @param recipient
+     * @param recipient receiver of message
      * @param receiveDerivedMessagesToo whether derived class of recipient can receive the message
-     * @param tClass
-     * @param action
-     * @param <T>
+     * @param tClass class of T
+     * @param action this action has one params that type of tClass
+     * @param <T> message data type
      */
     public <T> void register(Object recipient, boolean receiveDerivedMessagesToo, Class<T> tClass, Action1<T> action) {
         register(recipient, null, receiveDerivedMessagesToo, action, tClass);
@@ -144,11 +144,11 @@ public class Messenger {
 
     /**
      * see {@link com.kelin.mvvmlight.messenger.Messenger#register(Object, Object, Action0)}
-     * @param recipient
+     * @param recipient receiver of message
      * @param token register with a unique token,when a messenger send a msg with same token,it will receive this msg
-     * @param tClass Action1<T> type of T
+     * @param tClass class of T for Action1
      * @param action this action has one params that type of tClass
-     * @param <T>
+     * @param <T> message data type
      */
     public <T> void register(Object recipient, Object token, Class<T> tClass, Action1<T> action) {
         register(recipient, token, false, action, tClass);
@@ -156,12 +156,12 @@ public class Messenger {
 
     /**
      *  see {@link com.kelin.mvvmlight.messenger.Messenger#register(Object, Object, Class, Action1)}
-     * @param recipient
-     * @param token
+     * @param recipient receiver of message
+     * @param token register with a unique token,when a messenger send a msg with same token,it will receive this msg
      * @param receiveDerivedMessagesToo  whether derived class of recipient can receive the message
-     * @param action
-     * @param tClass
-     * @param <T>
+     * @param action this action has one params that type of tClass
+     * @param tClass class of T for Action1
+     * @param <T> message data type
      */
     public <T> void register(Object recipient, Object token, boolean receiveDerivedMessagesToo, Action1<T> action, Class<T> tClass) {
 
@@ -235,8 +235,8 @@ public class Messenger {
 
     /**
      * send the message type of T, all receiver can receive the message
-     * @param message
-     * @param <T>
+     * @param message any object can to be a message
+     * @param <T> message data type
      */
     public <T> void send(T message) {
         sendToTargetOrType(message, null, null);
@@ -246,7 +246,7 @@ public class Messenger {
      * send the message type of T, all receiver can receive the message
      * @param message  any object can to be a message
      * @param token send with a unique token,when a receiver has register with same token,it will receive this message
-     * @param <T>
+     * @param <T> message data type
      */
     public <T> void send(T message, Object token) {
         sendToTargetOrType(message, null, token);
@@ -258,8 +258,8 @@ public class Messenger {
      * @param target send to recipient directly with has not any message,
      *               Messenger.getDefault().register(this, ..) in a activity,if target set this activity
      *               it will receive the message
-     * @param <T>
-     * @param <R>
+     * @param <T> message data type
+     * @param <R> target
      */
     public <T, R> void sendToTarget(T message, R target) {
         sendToTargetOrType(message, target.getClass(), null);
@@ -268,7 +268,7 @@ public class Messenger {
     /**
      *  Unregister the receiver such as:
      *  Messenger.getDefault().unregister(this)" in onDestroy in the Activity is required avoid to memory leak!
-     * @param recipient
+     * @param recipient receiver of message
      */
     public void unregister(Object recipient) {
         unregisterFromLists(recipient, recipientsOfSubclassesAction);
