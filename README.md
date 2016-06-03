@@ -4,7 +4,7 @@ attributes for Data Binding  of View(like Uri for ImageView) ,we create some com
  ##Data Binding##
 Binding URI to the ImageView with bind:uri will make it loading bitmap from URI and render to ImageView automatically.
 
-       <ImageView
+     <ImageView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:layout_alignParentRight="true"
@@ -21,15 +21,21 @@ AdapterView like ListView、RecyclerView 、ViewPager is convenient, bind it to 
          bind:layoutManager="@{LayoutManagers.linear()}"
 
  Other attributes supported:
+
   - *ImageView*
-        <attr name="uri" />
-        <!--width for ResizeOptions (use Fresco to load bitmap). -->
-        <attr name="request_width" format="integer" />
-        <!--height for ResizeOptions (use Fresco to load bitmap). -->
-        <attr name="request_height" format="integer" />
-        <attr name="placeholderImageRes" format="reference|color" />
+
+      ```xml
+      <attr name="uri" />
+      <!--width for ResizeOptions (use Fresco to load bitmap). -->
+      <attr name="request_width" format="integer" />
+      <!--height for ResizeOptions (use Fresco to load bitmap). -->
+      <attr name="request_height" format="integer" />
+      <attr name="placeholderImageRes" format="reference|color" />
+      ```
 
   - *ListView*、*ViewPager*、*RecyclerView*
+
+      ```xml
          <!-- require ItemView  or  ItemViewSelector   -->
          <attr name="itemView" />
          <!-- require List<ViewModel> bind to ItemView to presentation.-->
@@ -41,26 +47,40 @@ AdapterView like ListView、RecyclerView 、ViewPager is convenient, bind it to 
          <attr name="itemIsEnabled" format="reference" />
          <!-- require PageTitles<T>-->
          <attr name="pageTitles" format="reference" />
+     ```
 
   - *ViewGroup*
+
+     ```xml
          <!-- require ItemView  or ItemViewSelector -->
          <attr name="itemView" />
          <!-- require List<ViewModel> bind to ItemView to presentation.-->
          <attr name="viewModels" format="reference" />
+         ```
 
   - *EditText*
+
+     ```xml
          <!-- require boolean value to decide whether requestFocus for view. -->
          <attr name="requestFocus"  format="boolean" />
-
+     ```
   - *SimpleDraweeView*
+
+       ```xml
          <!-- require String to load Image"-->
          <attr name="uri" />
+         ```
 
   - *WebView*
+
+      ```xml
          <!-- require String render to html show in webview-->
          <attr name="render" format="string" />
+      ```
 
 ##Command Binding##
+
+
 When RecyclerView scroll to end of list,we have onLoadMoreCommand to deal with event.
 
      <android.support.v7.widget.RecyclerView
@@ -78,7 +98,10 @@ When RecyclerView scroll to end of list,we have onLoadMoreCommand to deal with e
              loadData(page)
         });
 More command binding is supported:
+
  - *View*
+
+   ```xml
         <!-- require ReplyCommand to deal with view click event. -->
         <attr name="clickCommand" format="reference" />
         <!-- require ReplyCommand<Boolean> to deal with view focus change event.
@@ -86,46 +109,64 @@ More command binding is supported:
         <attr name="onFocusChangeCommand" format="reference" />
         <!-- require ReplyCommand<MotionEvent> -->
         <attr name="onTouchCommand" />
+        ```
 
  - *ListView*、*RecyclerView*
+
+     ```xml
         <!-- require ReplyCommand<Integer> -->
         <attr name="onScrollStateChangedCommand" />
         <!-- require ReplyCommand<ListViewScrollDataWrapper> -->
         <attr name="onScrollChangeCommand" />
         <!-- require ReplyCommand<Integer> count of list items-->
         <attr name="onLoadMoreCommand" format="reference" />
-
+```
  - *ViewPager*
+
+     ```xml
          <!--require ReplyCommand<ViewPagerDataWrapper> -->
         <attr name="onPageScrolledCommand" format="reference" />
         <!--require ReplyCommand<Integer> -->
         <attr name="onPageSelectedCommand" format="reference" />
         <!--require ReplyCommand<Integer> -->
         <attr name="onPageScrollStateChangedCommand" format="reference" />
+        ```
 
  - *EditText*
+
+    ```xml
         <!--require ReplyCommand<TextChangeDataWrapper> -->
         <attr name="beforeTextChangedCommand" format="reference" />
         <!--require ReplyCommand<TextChangeDataWrapper> -->
         <attr name="onTextChangedCommand" format="reference" />
         <!--require ReplyCommand<String> -->
         <attr name="afterTextChangedCommand" format="reference" />
+        ```
 
  - *ImageView*
+
+     ```xml
          <!--  require ReplyCommand<Bitmap> -->
          <attr name="onSuccessCommand" format="reference" />
          <!--require ReplyCommand<CloseableReference<CloseableImage>> -->
          <attr name="onFailureCommand" format="reference" />
+         ```
 
  - *ScrollView*、*NestedScrollView*
+
+     ```xml
         <!-- require ReplyCommand<ScrollDataWrapper> -->
         <attr name="onScrollChangeCommand" />
         <!-- require ReplyCommand<NestScrollDataWrapper> -->
         <attr name="onScrollChangeCommand" />
+        ```
 
  - *SwipeRefreshLayout*
+
+      ```xml
         <!-- require RelayCommand<> -->
         <attr name="onRefreshCommand" format="reference" />
+        ```
 
 ###Messenger###
 
@@ -152,6 +193,7 @@ More command binding is supported:
       Messenger.getDefault().sendNoMsgToTargetWithToken(Object token,R target)
       Messenger.getDefault().sendNoMsgToTarget(Object target)
 - cancel register
+
       /* Usually  call in OnDestroy() function*/
-       Messenger.getDefault().unregister(Object recipient)"
+      Messenger.getDefault().unregister(Object recipient)"
 
